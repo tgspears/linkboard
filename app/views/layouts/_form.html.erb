@@ -1,0 +1,5 @@
+<%= bootstrap_form_for @post do |x| %>
+	<%= x.text_field :title %>
+	<%= x.text_field :link %>
+	<%= x.submit "SAVE", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,6 @@
+<h1>New Comment</h1>
+
+<%= bootstrap_form_for new_post_comment_path do |x| %>
+	<%= x.text_area :body %>
+	<%= x.submit "Comment", class: "btn btn-primary" %>
+<% end %>

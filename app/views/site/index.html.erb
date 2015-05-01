@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Home Page</h1>
+		<h2>
+		<%= "Hi #{@current_user.email}" if @current_user %>
+		</h2>
+		<%= render "layouts/flash"%>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+<h1> SHOWING <%= @post.title %> </h1>
+
+<h2><%= @post.link %></h2>
+<%= link_to "Delete", @post, method: :delete, data: {confirm: "Want to delete?"}, :class => "btn btn-danger" %>

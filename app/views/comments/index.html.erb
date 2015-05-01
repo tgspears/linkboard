@@ -1,0 +1,29 @@
+<h1><%= @post.title %></h1>
+<h2><%= @post.link %></h2>
+
+
+<h3> Comments: </h3>
+<ul>
+	<% @comments.each do |comment| %>
+		<tr>
+			<td>
+				<%= bootstrap_form_for [comment,@vote] do |x| %>
+					<%= x.hidden_field :value, value: "1" %>
+					<%= x.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-chevron-up" %>
+				<% end %>
+				<%= bootstrap_form_for [comment,@votes] do |x| %>
+					<%= x.hidden_field :value, value: "1" %>
+					<%= x.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-chevron-down" %>
+				<% end %>
+			</td>
+			<td><%= @current_user.email %></td>
+			<td><%= comment.body %></td>
+		</tr>
+	<% end %>
+</ul>
+<h1>Want to contriboot?</h1>
+
+<%= bootstrap_form_for [@post,@comment] do |x| %>
+	<%= x.text_area :body %>
+	<%= x.submit "Contribootan", class: "btn btn-primary" %>
+<% end %>

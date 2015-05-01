@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+
+  root 'site#index'
+  get 'about' => 'site#about'
+  get 'secret_page' => 'site#secret'
+
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  # Test logout via url (for development)
+  get 'logout' => 'sessions#destroy'
+
+  resources :users
+
+  resources :posts do
+    resources :votes, :only => [:create]
+    resources :comments
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

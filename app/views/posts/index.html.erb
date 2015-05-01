@@ -1,0 +1,37 @@
+<h3>Latest posts</h3>
+<table class="table">
+<tr>
+    <th></th>
+    <th>Score</th>
+    <th>Title</th>
+    <th>User</th>
+    <th>Posted</th>
+    <th>Comments</th>
+</tr>
+<% if @posts.any? %>
+    <% @posts.each do |post| %>
+        <tr>
+            <td>
+	            <%= bootstrap_form_for [post,@vote] do |f| %>
+		            <%= f.hidden_field :value, value: "1" %>
+		            <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-arrow-up" %>
+	            <% end %>
+	            <%= bootstrap_form_for [post,@vote] do |f| %>
+		            <%= f.hidden_field :value, value: "-1" %>
+		            <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-arrow-down" %>
+	            <% end %>
+            </td>
+            <td>
+                <%= post.votes.reduce(0){ |sum,v| sum + v.value} %>
+            </td>
+            <td><%= link_to post.title,post.link, :target=>'_blank' %></td>
+            <td><%= post.user ? post.user.name : 'Unknown' %></td>
+            <td>0</td>
+        	<td><%= link_to "Comments", post_comments_path(post), class: "btn btn-primary" %>
+        </tr>
+    <% end %>
+<% else %>
+    <tr>
+        <td>No posts</td>
+    </tr>
+<% end %>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # Test logout via url (for development)
   get 'logout' => 'sessions#destroy'
 
-  resources :users
+  resources :users, only: [:new,:create]
 
   resources :posts do
     resources :votes, :only => [:create]
